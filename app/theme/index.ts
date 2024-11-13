@@ -1,6 +1,6 @@
 import type { breakpoints } from "./breakpoints";
 import { colors as colorsLight } from "./colors";
-import { colors as colorsDark } from "./colorsDark";
+import { colors as colorsDark } from "./colors-dark";
 import { spacing } from "./spacing";
 import { timing } from "./timing";
 import { typography } from "./typography";
