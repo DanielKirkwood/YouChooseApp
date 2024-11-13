@@ -1,4 +1,4 @@
-import type { Theme, ThemeContexts } from "@/theme";
+import type { ThemeContexts } from "@/theme";
 import {
 	DefaultTheme,
 	useTheme as useNavTheme,

@@ -1,5 +1,6 @@
-import { useAppTheme, useThemeProvider } from "@/hooks/useAppTheme";
-import { navigationStore$ } from "@/navigationStore";
+import { Screen } from "@/components";
+import { useThemeProvider } from "@/hooks";
+import { navigationStore$ } from "@/navigation-store";
 import { customFontsToLoad } from "@/theme";
 import { observer } from "@legendapp/state/react";
 import { useLogger } from "@react-navigation/devtools";
@@ -10,24 +11,18 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
-import { Button, LayoutAnimation, Text, View } from "react-native";
+import { Text } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 function HomeScreen() {
 	const { styles } = useStyles($styles);
-	const { setThemeContextOverride, themeContext } = useAppTheme();
 
 	return (
-		<View style={styles.container}>
-			<Text style={styles.text}>Home Screen</Text>
-			<Button
-				onPress={() => {
-					LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); // Animate the transition
-					setThemeContextOverride(themeContext === "dark" ? "light" : "dark");
-				}}
-				title={`Switch Theme: ${themeContext}`}
-			/>
-		</View>
+		<Screen>
+			<Screen.Content>
+				<Text style={styles.text}>Home Screen</Text>
+			</Screen.Content>
+		</Screen>
 	);
 }
 
@@ -46,7 +41,12 @@ const $styles = createStyleSheet((theme) => ({
 
 const RootStack = createNativeStackNavigator({
 	screens: {
-		Home: HomeScreen,
+		Home: {
+			screen: HomeScreen,
+			options: {
+				headerShown: true,
+			},
+		},
 	},
 });
 
